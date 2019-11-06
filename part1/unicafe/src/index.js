@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Statistic = ({ text, value }) => <p>{text}: {value}</p>
+const Statistic = ({ text, value }) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+)
 
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
@@ -13,14 +18,16 @@ const Statistics = ({ good, neutral, bad }) => {
     return (
       <div>
         <h2>Statistics</h2>
-        <div>
-          <Statistic text="Good" value={good} />
-          <Statistic text="Neutral" value={neutral} />
-          <Statistic text="Bad" value={bad} />
-          <Statistic text="All" value={all} />
-          <Statistic text="Average" value={getAverage() || 0} />
-          <Statistic text="Positive" value={getPositive() || 0} />
-        </div>
+        <table>
+          <tbody>
+            <Statistic text="Good" value={good} />
+            <Statistic text="Neutral" value={neutral} />
+            <Statistic text="Bad" value={bad} />
+            <Statistic text="All" value={all} />
+            <Statistic text="Average" value={getAverage() || 0} />
+            <Statistic text="Positive" value={getPositive() || 0} />
+          </tbody>
+        </table>
       </div>
     )
   }
@@ -51,7 +58,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Give Feedback!</h2>
+      <h1>Give Feedback</h1>
       <div>
         <Button type="Good" clickHandler={handleFeedback} />
         <Button type="Neutral" clickHandler={handleFeedback} />
