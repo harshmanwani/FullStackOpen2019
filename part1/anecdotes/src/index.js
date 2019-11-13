@@ -4,13 +4,25 @@ import './index.css';
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
 
   const getRandom = () => setSelected(Math.floor(Math.random() * anecdotes.length))
 
+  const updateVotes = () => {
+    const currentVotes = [...votes];
+    currentVotes[selected] += 1;
+    setVotes(currentVotes);
+  }
+
   return (
     <div className="app">
+      <h2>Anecdote Of The Day</h2>
       {props.anecdotes[selected]}
-      <button onClick={getRandom}>Next Anecdote</button>
+      <div>has {votes[selected]} votes</div>
+      <div>
+        <button onClick={updateVotes}>Vote</button>
+        <button onClick={getRandom}>Next Anecdote</button>
+      </div>
     </div>
   )
 }
