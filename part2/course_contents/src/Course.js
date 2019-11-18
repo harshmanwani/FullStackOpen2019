@@ -1,12 +1,18 @@
 import React from 'react';
 
-const Course = ({course, total}) => (
+const Course = ({ courses }) => (
   <div>
-    <h1>{course.name}</h1>
     {
-      course.parts.map(part => <p>{`${part.name} ${part.exercises}`}</p> )
+      courses.map(course => (
+        <div>
+          <h2>{course.name}</h2>
+          {
+            course.parts.map(part => <p>{`${part.name} ${part.exercises}`}</p>)
+          }
+          <strong>Total of {course.parts.reduce((final, each) => final += each.exercises, 0)} exercises</strong>
+        </div>
+      ))
     }
-    <strong>Total of {total} exercises</strong>
   </div>
 );
 
