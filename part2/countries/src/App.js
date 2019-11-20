@@ -6,6 +6,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [results, setResults] = useState([]);
+  const [show, setShow] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,6 +16,7 @@ function App() {
 
   const onChange = e => {
     const value = e.target.value;
+    setShow([]);
     setInputValue(value);
     setResults(countries.filter(country => country.name.toLowerCase().includes(value.toLowerCase())));
   }
@@ -22,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <div>Find Countries: <input value={inputValue} onChange={onChange} /></div>
-      <Results results={results} />
+      <Results results={show.length ? show : results} showCountry={setShow}/>
     </div>
   );
 }
