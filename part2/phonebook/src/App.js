@@ -21,8 +21,13 @@ const App = () => {
       window.alert(`${formData.name} is already added to the phonebook.`);
       return;
     }
-    setPersons(persons.concat(formData));
-    setformData({ name: '', number: '' });
+    axios
+      .post('http://localhost:3030/persons', formData)
+      .then(response => {
+        setPersons(persons.concat(response.data));
+        setformData({ name: '', number: '' });
+      })
+      .catch(error => alert(error));
   };
 
   const handleFormInput = (e, type) => {
