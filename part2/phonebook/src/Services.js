@@ -11,4 +11,9 @@ const addPerson = (formData) => {
   return request.then(response => response.data);
 }
 
-export default { getAll, addPerson }
+const deleteEntry = (id) => {
+  const request = axios.delete(`${baseUrl}/${id}`)
+  return request.then(response => response);
+}
+
+export default { getAll, addPerson, deleteEntry }
