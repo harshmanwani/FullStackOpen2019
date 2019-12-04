@@ -3,6 +3,7 @@ import axios from 'axios';
 import Filter from './Filter';
 import PersonForm from './PersonForm';
 import Persons from './Persons';
+import PhonebookService from './Services';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -10,9 +11,10 @@ const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3030/persons')
-      .then(response => setPersons(response.data))
+    PhonebookService
+      .getAll()
+      .then(response => setPersons(response))
+      .catch(error => alert(error));
   }, []);
 
   const addPerson = (e) => {
@@ -21,10 +23,10 @@ const App = () => {
       window.alert(`${formData.name} is already added to the phonebook.`);
       return;
     }
-    axios
-      .post('http://localhost:3030/persons', formData)
+    PhonebookService
+      .addPerson(formData)
       .then(response => {
-        setPersons(persons.concat(response.data));
+        setPersons(persons.concat(response));
         setformData({ name: '', number: '' });
       })
       .catch(error => alert(error));
