@@ -18,8 +18,16 @@ const App = () => {
 
   const addPerson = (e) => {
     e.preventDefault();
-    if (persons.some(person => person.name === formData.name)) {
-      window.alert(`${formData.name} is already added to the phonebook.`);
+    const currentData = [...persons];
+    const existing = persons.findIndex(person => person.name === formData.name);
+    if (existing !== -1 && window.confirm(`${formData.name} is already added to phonebook, replace the old number with a new one?`)) {
+      PhonebookService
+        .updateNumber(persons[existing].id, formData)
+        .then(response => {
+          currentData[existing] = response;
+          setPersons(currentData);
+          setformData({ name: '', number: '' });
+        })
       return;
     }
     PhonebookService
@@ -60,7 +68,7 @@ const App = () => {
         handleFormInput={handleFormInput}
       />
       <h3>Numbers</h3>
-      <Persons 
+      <Persons
         persons={persons}
         filter={filter}
         deleteEntry={deleteEntry}
