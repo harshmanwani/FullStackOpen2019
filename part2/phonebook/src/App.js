@@ -31,6 +31,7 @@ const App = () => {
           showNotifications(1, `Changed Number of ${formData.name}`)
           setformData({ name: '', number: '' });
         })
+        .catch(error => showNotifications(0, `Information of ${formData.name} has already been removed from server`));
         return;
       }
       PhonebookService
@@ -40,7 +41,7 @@ const App = () => {
         showNotifications(1, `Added ${formData.name}`)
         setformData({ name: '', number: '' });
       })
-      .catch(error => alert(error));
+        .catch(error => showNotifications(0, `${error}`));
     };
     
     const deleteEntry = (person) => {
@@ -51,7 +52,7 @@ const App = () => {
           setPersons(persons.filter(item => item.id !== person.id))
           showNotifications(1, `Deleted ${person.name}`)
         })
-        .catch(error => alert(error))
+          .catch(error => showNotifications(0, `${formData.name} is already deleted from the server`))
     }
     return 0;
   }

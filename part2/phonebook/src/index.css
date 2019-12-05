@@ -13,6 +13,7 @@ code {
 }
 
 .success, .error {
+  color: white;
   font-size: 20px;
   border-style: solid;
   border-radius: 5px;
@@ -21,11 +22,9 @@ code {
 }
 
 .success {
-  color: #ffffff;
   background: #71d97e;
 }
 
 .error {
-  color: red;
-  background: lightgrey;
+  background: #ff3f74;
 }
