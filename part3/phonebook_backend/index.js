@@ -23,6 +23,12 @@ app.get('/api/persons/:id', (req, res) => {
   }
 })
 
+app.delete('/api/persons/:id', (req, res) => {
+  const id = Number(req.params.id);
+  persons = persons.filter(entry => entry.id !== id);
+  res.status(204).end();
+})
+
 app.get('/info', (req, res) => {
   res.send(`<div>
     <p>Phonebook has info for ${persons.length} people</p>
@@ -36,7 +42,7 @@ app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`)
 })
 
-const persons = [
+let persons = [
     {
       name: 'Arto Hellas',
       number: '040-123456',
