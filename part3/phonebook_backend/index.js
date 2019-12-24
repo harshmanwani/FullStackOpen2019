@@ -41,7 +41,13 @@ app.post('/api/persons', (req, res) => {
   
   if(!body.name || !body.number) {
     return res.status(400).json({
-      error: 'Content Missing'
+      error: 'Info Missing'
+    })
+  }
+
+  if(persons.some(entry => entry.name === body.name)) {
+    return res.status(400).json({
+      error: 'Name already exists, it should be unique.'
     })
   }
   
@@ -51,8 +57,8 @@ app.post('/api/persons', (req, res) => {
     id: generateId()
   }
 
-  persons.concat(person);
-  res.json(person)
+  persons = persons.concat(person);
+  res.json(persons)
 })
 
 app.get('/info', (req, res) => {
