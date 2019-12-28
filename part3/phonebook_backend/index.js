@@ -4,8 +4,10 @@ const app = express()
 const bodyParser = require('body-parser');
 var morgan = require('morgan')
 
+morgan.token('postData', req => JSON.stringify(req.body));
+
 app.use(bodyParser.json());
-app.use(morgan('tiny'));
+app.use(morgan(':method :url :response-time ms :postData'));
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to Node.js</h1>')
