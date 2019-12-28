@@ -2,8 +2,10 @@ const express = require('express');
 const app = express()
 
 const bodyParser = require('body-parser');
+var morgan = require('morgan')
 
 app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to Node.js</h1>')
