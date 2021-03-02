@@ -3,7 +3,7 @@ const dummy = (blogs) => {
 }
 
 const totalLikes = (blogs) => {
-    return blogs.reduce((sum, cur) => sum + cur.likes, 0)
+    return blogs.reduce((sum,cur) => sum+cur.likes,0)
 }
 
 const favoriteBlog = (blogs) => {
@@ -12,13 +12,13 @@ const favoriteBlog = (blogs) => {
 
 const mostBlogs = (blogs) => {
     let temp = {}
-    for (let x = 0; x < blogs.length; x++) {
+    for(let x = 0; x < blogs.length; x++) {
         temp[`${blogs[x].author}`] = (temp.hasOwnProperty(blogs[x].author) ? temp[`${blogs[x].author}`] + 1 : 1)
     }
     let toArray = Object.entries(temp)
     let maxFound = 0
-    for (let x = 0; x < toArray.length; x++) {
-        if (toArray[x][1] > toArray[maxFound][1]) {
+    for(let x = 0; x < toArray.length; x++) {
+        if(toArray[x][1] > toArray[maxFound][1]) {
             maxFound = x
         }
     }
@@ -30,13 +30,13 @@ const mostBlogs = (blogs) => {
 
 const mostLikes = (blogs) => {
     let temp = {}
-    for (let x = 0; x < blogs.length; x++) {
+    for(let x = 0; x < blogs.length; x++) {
         temp[`${blogs[x].author}`] = (temp.hasOwnProperty(blogs[x].author) ? temp[`${blogs[x].author}`] + blogs[x].likes : blogs[x].likes)
     }
     let toArray = Object.entries(temp)
     let maxFound = 0
-    for (let x = 0; x < toArray.length; x++) {
-        if (toArray[x][1] > toArray[maxFound][1]) {
+    for(let x = 0; x < toArray.length; x++) {
+        if(toArray[x][1] > toArray[maxFound][1]) {
             maxFound = x
         }
     }
