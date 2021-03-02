@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start:test": "cross-env NODE_ENV=test nodemon index.js"
   },
   "author": "Harsh Manwani",
   "license": "MIT",
